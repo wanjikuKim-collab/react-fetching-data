@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Getting Started 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project aims to explore 4 ways of fetching data in React. It will also touch on best practices while fetching data:
+- Fetch API
+- Axios
+- useSWR
+- React Query Library
+
+## Project
+For this project will use a deck of Card API: https://deckofcardsapi.com/
+To start of, we'll get the deck ready for drawing cards by creating a new deck first. The sequence is:
+    1. Create a Deck: Initialize a new deck when the component mounts and store the deckId in the component state. This ID will be used for any further API requests.
+    2. Fetch (Draw Cards): Use the deckId from the created deck to make a request to draw card
+
+Why Start with Creating the Deck?
+The deckId generated during deck creation is required to draw cards. So, you’ll need to create the deck first, retrieve the deckId, and then proceed to the draw functionality.
 
 ## Available Scripts
 
@@ -49,18 +62,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
+### Card API
+https://deckofcardsapi.com/
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
