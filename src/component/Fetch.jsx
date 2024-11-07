@@ -41,6 +41,17 @@ function Fetch() {
 
     }
 
+    // Function to shuffle the deck
+    const shuffleDeck = async () => {
+        try {
+           let promise = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/shuffle/?remaining=true`)
+           let data = await promise.json();
+           setRemaining(data.remaining);
+        }catch(error){
+            setError("Failed to shuffle deck")
+        }
+    };
+
     if (loading) return <p>Loading ...</p>;
     if (error) return <p className="text-red-700">Error: {error}</p>;
 
@@ -51,8 +62,10 @@ function Fetch() {
             <p>Deck ID: {deckId}</p>
             <p>Remaining: {remaining}</p>
 
-            {/* Draw Cards */}
+           
             <button className="bg-green-500 hover:bg-green-700 p-2 rounded text-white font-medium m-3" onClick={() => drawCards(2)}>Draw 2 Cards</button>
+            <button className="bg-violet-500 hover:bg-violet-700 p-2 rounded text-white font-medium m-3" onClick={() => shuffleDeck}>Shuffle Deck</button>
+             {/* Draw Cards */}
             <div className="grid grid-cols-2 gap-4">
                 {/* Display Cards */}
                 {cards.map(card => (
