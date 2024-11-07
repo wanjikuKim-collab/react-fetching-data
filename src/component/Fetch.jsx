@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getRequestWithNativeFetch } from "./FetchingLogic";
 
 function Fetch() {
     const [deckId, setDeckId] = useState('');
@@ -11,14 +12,10 @@ function Fetch() {
     useEffect(() => {
         const createDeck = async () => {
             try {
-                const promise = await fetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
-                if (!promise.ok) {
-                    throw new Error("Error fetching data")
-                }
-                const data = await promise.json();
+                const data = await getRequestWithNativeFetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
                 setDeckId(data.deck_id);//store deck ID for future requests
             } catch (error) {
-                setError("Failed to create a deck")
+                setError(error.message)
             } finally {
                 setLoading(false)
             }
@@ -30,8 +27,7 @@ function Fetch() {
     //function to draw cards
     const drawCards = async (count = 2) => {
         try {
-            const promise = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${count}`);
-            const data = await promise.json();
+            const data = await getRequestWithNativeFetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${count}`);
             console.log(data)
             setCards(data.cards);
             setRemaining(data.remaining)
@@ -44,8 +40,8 @@ function Fetch() {
     // Function to shuffle the deck
     const shuffleDeck = async () => {
         try {
-           let promise = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/shuffle/?remaining=true`)
-           let data = await promise.json();
+           let response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/shuffle/?remaining=true`)
+           let data = await response.json();
            setRemaining(data.remaining);
         }catch(error){
             setError("Failed to shuffle deck")
