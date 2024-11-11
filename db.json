@@ -1,10 +1,10 @@
 {
   "players": [
     {
-      "id": "1",
       "name": "John Doe",
       "email": "john@example.com",
-      "score": 2
+      "score": "5",
+      "id": "1"
     },
     {
       "id": "2",
@@ -13,28 +13,28 @@
       "score": 4
     },
     {
-      "id": "eeb9",
       "name": "Faith Kimani",
       "email": "kimanifaithw@gmail.com",
-      "score": 0
+      "score": "2",
+      "id": "eeb9"
     },
     {
-      "id": "7f38",
       "name": "Kimmy",
       "email": "kimmy@gmail.com",
-      "score": 0
+      "score": "3",
+      "id": "7f38"
     },
     {
-      "id": "d1bd",
       "name": "Sam",
       "email": "sam@gmail.com",
-      "score": 0
+      "score": "0",
+      "id": "d1bd"
     },
     {
-      "id": "dbb6",
       "name": "Giddy",
       "email": "gideon@gmail.com",
-      "score": 0
+      "score": "2",
+      "id": "dbb6"
     }
   ]
 }
