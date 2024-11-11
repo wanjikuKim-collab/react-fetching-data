@@ -29,6 +29,12 @@
       "name": "Sam",
       "email": "sam@gmail.com",
       "score": 0
+    },
+    {
+      "id": "dbb6",
+      "name": "Giddy",
+      "email": "gideon@gmail.com",
+      "score": 0
     }
   ]
 }

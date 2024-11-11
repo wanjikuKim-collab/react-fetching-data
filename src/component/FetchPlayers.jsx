@@ -29,6 +29,10 @@ function FetchPlayers() {
     fetchPlayers();
   }, []);
 
+  //Function to add new player to the state
+  const addNewPlayer =(newPlayer)=>{
+    setPlayers((prevPlayer)=>[...prevPlayer, newPlayer])
+  }
   // POST: Add a new user
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +45,7 @@ function FetchPlayers() {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      setPlayers((prevPlayers)=>[...prevPlayers, data]); //update players list with new player
+     addNewPlayer(data); //update players list with new player
       setFormData({ name: "", email: "", score: 0 }); //Reset input
       console.log("New player added:", data);
     } catch (error) {
