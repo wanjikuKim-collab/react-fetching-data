@@ -90,17 +90,15 @@ function FetchPlayers() {
   //DELETE: hendle deleting a player
   async function handleDelete(id) {
     try {
-      const response = await fetch(
-        `http://localhost:3001/players/${id}`,
-        {
-          method: "DELETE",
-        });
-        if(response.ok){
-          setPlayers((players) => players.filter((player) => player.id !== id));
-          console.log("Player deleted", id)
-        }else{
-          console.error("Failed to delete player:", response.statusText);
-        }
+      const response = await fetch(`http://localhost:3001/players/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setPlayers((players) => players.filter((player) => player.id !== id));
+        console.log("Player deleted", id);
+      } else {
+        console.error("Failed to delete player:", response.statusText);
+      }
     } catch (error) {
       setError(`Could not delete player: ${error.message}`);
     }
@@ -217,7 +215,7 @@ function FetchPlayers() {
                         Edit
                       </button>
                       <button
-                        onClick={()=> handleDelete(player.id)}
+                        onClick={() => handleDelete(player.id)}
                         className="ml-2 border border-solid p-2 rounded hover:bg-slate-200"
                       >
                         Delete
