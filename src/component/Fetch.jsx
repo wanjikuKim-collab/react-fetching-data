@@ -15,7 +15,7 @@ function Fetch() {
                 const data = await getRequestWithNativeFetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
                 setDeckId(data.deck_id);//store deck ID for future requests
             } catch (error) {
-                setError(error.message)
+                setError(`Failed to fetch cards: ${error.message}`)
             } finally {
                 setLoading(false)
             }
