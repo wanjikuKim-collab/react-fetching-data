@@ -87,6 +87,25 @@ function FetchPlayers() {
     }
   };
 
+  //DELETE: hendle deleting a player
+  async function handleDelete(id) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/players/${id}`,
+        {
+          method: "DELETE",
+        });
+        if(response.ok){
+          setPlayers((players) => players.filter((player) => player.id !== id));
+          console.log("Player deleted", id)
+        }else{
+          console.error("Failed to delete player:", response.statusText);
+        }
+    } catch (error) {
+      setError(`Could not delete player: ${error.message}`);
+    }
+  }
+
   return (
     <div className="m-6 justify-center">
       <h1>FetchPlayers</h1>
@@ -132,7 +151,7 @@ function FetchPlayers() {
             {players.map((player) => (
               <tr className="bg-white border-b " key={player.id}>
                 {currentEditId === player.id ? (
-                   /* EDIT STATE*/
+                  /* EDIT STATE*/
                   <>
                     <td>
                       <input
@@ -162,7 +181,12 @@ function FetchPlayers() {
                       />
                     </td>
                     <td className="text-white">
-                      <button className="mr-2 bg-green-400 p-2" onClick={handleEdit}>Save</button>
+                      <button
+                        className="mr-2 bg-green-400 p-2"
+                        onClick={handleEdit}
+                      >
+                        Save
+                      </button>
                       <button
                         className="m-2 bg-red-400 p-2"
                         onClick={() => setCurrentEditId(null)}
@@ -188,9 +212,15 @@ function FetchPlayers() {
                             score: player.score,
                           }); // Pre-fill the form with current player data
                         }}
-                        className="bg-green-500 hover:bg-green-600 text-white p-2"
+                        className="bg-green-500 hover:bg-green-600 rounded text-white p-2"
                       >
                         Edit
+                      </button>
+                      <button
+                        onClick={()=> handleDelete(player.id)}
+                        className="ml-2 border border-solid p-2 rounded hover:bg-slate-200"
+                      >
+                        Delete
                       </button>
                     </td>
                   </>
