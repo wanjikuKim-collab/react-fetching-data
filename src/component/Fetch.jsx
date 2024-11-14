@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getRequestWithNativeFetch } from "./FetchingLogic";
+import { fetchWithAxios } from "./Axios";
 
 function Fetch() {
     const [deckId, setDeckId] = useState('');
@@ -12,7 +13,7 @@ function Fetch() {
     useEffect(() => {
         const createDeck = async () => {
             try {
-                const data = await getRequestWithNativeFetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
+                const data = await fetchWithAxios('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
                 setDeckId(data.deck_id);//store deck ID for future requests
             } catch (error) {
                 setError(`Failed to fetch cards: ${error.message}`)
